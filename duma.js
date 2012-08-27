@@ -1,6 +1,10 @@
+// csinalunk egy fuggvenyt ami visszaad nekunk egy sort
 var getRandomBSC = (function() {
+  // valtozoba bementjuk a tombot. azert itt, mert
+  // akkor nem latszik kint globalisan egy ekkora tomb
+  // csak ezen a fuggvenyen belul latszik
   var bsc = [
-    "Százötvenezerbe kerül egy jobb rókabunda. Van olcsóbb is, csak az harap."
+      "Százötvenezerbe kerül egy jobb rókabunda. Van olcsóbb is, csak az harap."
     , "A nők vigaszt nyújtanak, amire nélkülük soha nem lenne szükségünk."
     , "Optimista: Trabantos vonóhoroggal."
     , "Ne olvasd a történelmet - Csináld!"
@@ -753,9 +757,12 @@ var getRandomBSC = (function() {
     , "Wikipédia: Bármekkora baromságot is állítasz bizonyítás nélkül, milliók hisznek neked!"
   ];
   
+  // vissszaterunk egy fuggvenyyel, ez lesz majd a getRandomBSC fuggveny
+  // ez a fuggveny hozzafer a bsc tombhoz, mert egy "szinten" van vele
   return function() {
+    // elemszam alapjan kiszedunk egy random elemet
     var num = (Math.round(Math.random() * 1000) % bsc.length);
-    console.log(bsc, num);
     return bsc[num];
   }
-})();
+})(); // futtetjuk a kulso jail fuggvenyt igy a getRandomBSC erteke a fuggveny
+      // visszateresi fuggvenye :)
