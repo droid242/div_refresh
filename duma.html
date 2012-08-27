@@ -4,11 +4,13 @@
   <title>duma</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="duma.css"/>
+  <script type="text/javascript" src="jquery-1.8.0.js"></script>
   <script type="text/javascript" src="duma.js"></script>
 </head>
 <body>
+  <div id="my_panel"></div>
   <script type="text/javascript">
-    document.write(Duma.getRandomOne());
+    Duma.getRandomOne(jQuery("#my_panel"));
   </script>
 </body>
 </html>
