@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-	<title>DIV refresh page</title>
-	<meta charset="utf-8" />
+  <title>DIV refresh page</title>
+  <meta charset="utf-8" />
 
-	<script type="text/javascript" src="duma.js"></script>
-	<script type="text/javascript" src="jquery-1.8.0.js"></script>
-	<script type="text/javascript">
-		var auto_refresh;
+  <script type="text/javascript" src="duma.js"></script>
+  <script type="text/javascript" src="jquery-1.8.0.js"></script>
+  <script type="text/javascript">
+    var auto_refresh;
 
-		var reloadContent = function() {
-			jQuery('#panel').fadeOut('slow').fadeIn('slow');
-		};
+    var reloadContent = function() {
+      jQuery('#panel').fadeOut('slow', function() {
+        jQuery(this).html(getRandomBSC());
+      }).fadeIn('slow');
+    };
 
-		jQuery(function() {
-			jQuery("#changePanel").click(reloadContent);
-			auto_refresh = setInterval(reloadContent, 4000);
-		});
-	</script>
+    jQuery(function() {
+      jQuery("#changePanel").click(reloadContent);
+      auto_refresh = setInterval(reloadContent, 4000);
+    });
+    </script>
 </head>  
 <body>
-	<div id="panel">
-		<script type="text/javascript">
-			document.write(bsc[num]);
-		</script>				
-	</div>
+  <div id="panel">
+    <script type="text/javascript">
+      document.write(getRandomBSC());
+    </script>
+  </div>
     
-	<a href="#" id="changePanel">click</a>
+  <a href="#" id="changePanel">click</a>
 </body>
 </html>
-	
