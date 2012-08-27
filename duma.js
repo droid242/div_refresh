@@ -1,5 +1,5 @@
 // csinalunk egy fuggvenyt ami visszaad nekunk egy sort
-var getRandomBSC = (function() {
+var Duma = (function() {
   // valtozoba bementjuk a tombot. azert itt, mert
   // akkor nem latszik kint globalisan egy ekkora tomb
   // csak ezen a fuggvenyen belul latszik
@@ -757,12 +757,20 @@ var getRandomBSC = (function() {
     , "Wikipédia: Bármekkora baromságot is állítasz bizonyítás nélkül, milliók hisznek neked!"
   ];
   
-  // vissszaterunk egy fuggvenyyel, ez lesz majd a getRandomBSC fuggveny
+  var last_selected = null;
+  
+  // vissszaterunk egy objektummal, ami jelenleg egy fuggvenyt tartalmaz,
   // ez a fuggveny hozzafer a bsc tombhoz, mert egy "szinten" van vele
-  return function() {
-    // elemszam alapjan kiszedunk egy random elemet
-    var num = (Math.round(Math.random() * 1000) % bsc.length);
-    return bsc[num];
+  return {
+    getRandomOne: function() {
+      var num = (Math.round(Math.random() * 1000) % bsc.length);
+      // elemszam alapjan kiszedunk egy random elemet
+      while(num == last_selected) {
+        num = (Math.round(Math.random() * 1000) % bsc.length);
+      }
+      last_selected = num;
+      return bsc[num];
+    }
   }
-})(); // futtetjuk a kulso jail fuggvenyt igy a getRandomBSC erteke a fuggveny
-      // visszateresi fuggvenye :)
+})(); // futtetjuk a kulso jail fuggvenyt igy a getRandomOne-t tartalmazo objektum
+      // bekerul :)
